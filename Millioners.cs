@@ -18,47 +18,23 @@ namespace TheMillionersIssues
 
         public void lookingForSomeTrip()
         {
-            this.sailorPort = new UdpClient(6565);
-            Console.Write(this.sailorPort.Client);
+            IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 5656);
+            this.sailorPort = new UdpClient(RemoteIpEndPoint);
             Console.WriteLine("Looking for a new boat...");
-            this.sailorPort.Client.Bind(new IPEndPoint(IPAddress.Any, 0));
-            this.sailorPort.Client.Listen(10);
-            this.sailorPort.BeginReceive(Read_Callback, new object());
-        }
+         
+            // Blocks until a message returns on this socket from a remote host.
+            Byte[] receiveBytes = this.sailorPort.Receive(ref RemoteIpEndPoint);
+            Byte[] portBytes = { receiveBytes[receiveBytes.Length - 1], receiveBytes[receiveBytes.Length - 2] };
 
-        public class StateObject
-        {
-            public Socket workSocket = null;
-            public const int BUFFER_SIZE = 1024;
-            public byte[] buffer = new byte[BUFFER_SIZE];
-            public StringBuilder sb = new StringBuilder();
-        }
+            
+            string applicationMsg = Encoding.ASCII.GetString(receiveBytes);      
+            int returnPort = BitConverter.ToInt16(portBytes, 0);
 
-        public static void Read_Callback(IAsyncResult ar)
-        {
-            StateObject so = (StateObject)ar.AsyncState;
-            Socket s = so.workSocket;
+            Console.WriteLine("Requesting to board The " + applicationMsg.Substring("IntroToNets".Length, 32/*bytes*/));
 
-            int read = s.EndReceive(ar);
-
-            if (read > 0)
-            {
-                so.sb.Append(Encoding.ASCII.GetString(so.buffer, 0, read));
-                s.BeginReceive(so.buffer, 0, StateObject.BUFFER_SIZE, 0,
-                                         new AsyncCallback(Read_Callback), so);
-            }
-            else
-            {
-                if (so.sb.Length > 1)
-                {
-                    //All of the data has been read, so displays it to the console
-                    string strContent;
-                    strContent = so.sb.ToString();
-                    Console.WriteLine(String.Format("Read {0} byte from socket" +
-                                       "data = {1} ", strContent.Length, strContent));
-                }
-                s.Close();
-            }
+            
+          
+       
         }
     }
 

@@ -4,3 +4,9 @@ d:\documents\users\talbense\Documents\Visual Studio 2017\Projects\TheMillionersI
 d:\documents\users\talbense\Documents\Visual Studio 2017\Projects\TheMillionersIssues\TheMillionersIssues\obj\Debug\TheMillionersIssues.csprojResolveAssemblyReference.cache
 d:\documents\users\talbense\Documents\Visual Studio 2017\Projects\TheMillionersIssues\TheMillionersIssues\obj\Debug\TheMillionersIssues.exe
 d:\documents\users\talbense\Documents\Visual Studio 2017\Projects\TheMillionersIssues\TheMillionersIssues\obj\Debug\TheMillionersIssues.pdb
+C:\Users\אלי\Documents\GitHub\TheMillionersIssues\bin\Debug\TheMillionersIssues.exe.config
+C:\Users\אלי\Documents\GitHub\TheMillionersIssues\obj\Debug\TheMillionersIssues.exe
+C:\Users\אלי\Documents\GitHub\TheMillionersIssues\obj\Debug\TheMillionersIssues.pdb
+C:\Users\אלי\Documents\GitHub\TheMillionersIssues\bin\Debug\TheMillionersIssues.exe
+C:\Users\אלי\Documents\GitHub\TheMillionersIssues\bin\Debug\TheMillionersIssues.pdb
+C:\Users\אלי\Documents\GitHub\TheMillionersIssues\obj\Debug\TheMillionersIssues.csprojResolveAssemblyReference.cache

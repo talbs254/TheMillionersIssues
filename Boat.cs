@@ -7,24 +7,21 @@ using System.Threading.Tasks;
 
 namespace TheMillionersIssues
 {
+
     class Boat
     {
         private static readonly int numOfSailorsPerBoat = 10;
 
-        private static IPAddress IPAdd = initIPAddress();
-        private static int currentSocket = 11000;
         private static List<Socket> listenList = new List<Socket>();
         private static List<Socket> acceptList = new List<Socket>();
+
+        private static int boatSocketCtr = 10000;
 
         private char[] boatName = new char[32];
         private Socket socket;
         private Boolean anchor;
 
-        private static IPAddress initIPAddress()
-        {
-            IPHostEntry ipHostEntry = Dns.Resolve(Dns.GetHostName());
-            return ipHostEntry.AddressList[0];
-        }
+       
 
 
         public Boat(String name)
@@ -41,7 +38,8 @@ namespace TheMillionersIssues
 
             this.socket = new Socket(AddressFamily.InterNetwork,
                                SocketType.Stream, ProtocolType.Tcp);
-            this.socket.Bind(new IPEndPoint(IPAdd, currentSocket));
+            this.socket.Bind(new IPEndPoint(IPAddress.Any, boatSocketCtr));
+            boatSocketCtr += 1;
             this.socket.Listen(numOfSailorsPerBoat);
             this.anchor = false;
 
@@ -55,7 +53,7 @@ namespace TheMillionersIssues
             new System.Threading.Timer((e) =>
             {
                 broadcast();
-            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(60));
+            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(3));
 
             while (!anchor)
             {
@@ -68,7 +66,7 @@ namespace TheMillionersIssues
 
         }
         
-        private void broadcast()
+        public void broadcast()
         {
             int i, j;
             String boatName = new string(this.boatName);       
