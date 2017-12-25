@@ -53,7 +53,7 @@ namespace TheMillionersIssues
             new System.Threading.Timer((e) =>
             {
                 broadcast();
-            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(3));
+            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(60));
 
             while (!anchor)
             {
