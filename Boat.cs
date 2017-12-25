@@ -20,15 +20,23 @@ namespace TheMillionersIssues
         private Socket socket;
         private Boolean anchor;
 
+        /// <summary>
+        /// find the ip address of the computer
+        /// </summary>
+        /// <returns> IP object </returns>
         private static IPAddress initIPAddress()
         {
             IPHostEntry ipHostEntry = Dns.Resolve(Dns.GetHostName());
             return ipHostEntry.AddressList[0];
         }
 
-
+        /// <summary>
+        /// initial boat name and socket
+        /// </summary>
+        /// <param name="name"> name of the boat </param>
         public Boat(String name)
         {
+            //initial boat name
             int i;
             for (i = 0; i < name.Length; i += 1)
                 this.boatName[i] = name[i];
@@ -38,18 +46,21 @@ namespace TheMillionersIssues
                 i += 1;
             }
 
-
+            //open boat socket
             this.socket = new Socket(AddressFamily.InterNetwork,
                                SocketType.Stream, ProtocolType.Tcp);
             this.socket.Bind(new IPEndPoint(IPAdd, currentSocket));
             this.socket.Listen(numOfSailorsPerBoat);
             this.anchor = false;
 
-
+            //in case there is more than 1 boats
             listenList.Add(socket);
 
         }
 
+        /// <summary>
+        /// broadcast messege every 60 seconds
+        /// </summary>
         public void raiseTheSail()
         {
             new System.Threading.Timer((e) =>

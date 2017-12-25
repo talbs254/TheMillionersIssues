@@ -18,12 +18,12 @@ namespace TheMillionersIssues
 
         public void lookingForSomeTrip()
         {
-            this.sailorPort = new UdpClient(6565);
-            Console.Write(this.sailorPort.Client);
+            this.sailorPort = new UdpClient();
+           // Console.Write(this.sailorPort.Client);
             Console.WriteLine("Looking for a new boat...");
-            this.sailorPort.Client.Bind(new IPEndPoint(IPAddress.Any, 0));
-            this.sailorPort.Client.Listen(10);
+            this.sailorPort.Client.Bind(new IPEndPoint(IPAddress.Any, 6565));
             this.sailorPort.BeginReceive(Read_Callback, new object());
+            Receive(null);
         }
 
         public class StateObject
@@ -59,6 +59,14 @@ namespace TheMillionersIssues
                 }
                 s.Close();
             }
+        }
+
+        private void Receive(IAsyncResult ar)
+        {
+            IPEndPoint ip = new IPEndPoint(IPAddress.Any, 0);
+            byte[] bytes =sailorPort.EndReceive(ar, ref ip);
+            string message = Encoding.ASCII.GetString(bytes);
+            Console.WriteLine("From {0} received: {1} ", ip.Address.ToString(), message);
         }
     }
 
