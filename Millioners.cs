@@ -61,14 +61,14 @@ namespace TheMillionersIssues
 
 
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         lookingForSomeTrip();
                     }
 
                 }
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 Console.WriteLine("Could not open TCP connection");
                 lookingForSomeTrip();
