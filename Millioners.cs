@@ -21,7 +21,6 @@ namespace TheMillionersIssues
         /// </summary>
         public void lookingForSomeTrip()
         {
-<<<<<<< HEAD
 
             Console.WriteLine("Looking for a new boat...");
             // while (sailorPort == null)
@@ -30,22 +29,13 @@ namespace TheMillionersIssues
             //   }
             try
             {
-
                 UdpClient sailorPort = new UdpClient(ipEndPoint);
-=======
-            try
-            {
-                Console.WriteLine("Looking for a new boat...");
-                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, 1515);
-                sailorPort = new UdpClient(ipEndPoint);
->>>>>>> 5bf09be1422d356e9605e7b52abcec84d8c965a4
                 Byte[] receiveBytes = sailorPort.Receive(ref ipEndPoint);
                 Byte[] portBytes = { receiveBytes[receiveBytes.Length - 1], receiveBytes[receiveBytes.Length - 2] };
                 string applicationMsg = Encoding.ASCII.GetString(receiveBytes);
                 int returnPort = BitConverter.ToInt16(portBytes, 0);
                 String boatName = applicationMsg.Substring("IntroToNets".Length, 32/*bytes*/);
                 Console.WriteLine("Requesting to board The " + boatName);
-<<<<<<< HEAD
                 sailorPort.Close();
                 TcpClient tcpConnection = new TcpClient();
                 tcpConnection.Connect(new IPEndPoint(ipEndPoint.Address, returnPort));
@@ -61,23 +51,6 @@ namespace TheMillionersIssues
                         //enable user to enter income or ask to leave the boat
                         userEnterdInput(tcpConnection, boatName);
 
-=======
-
-                TcpClient tcpConnection = new TcpClient();
-                tcpConnection.Connect(new IPEndPoint(ipEndPoint.Address, returnPort));
-
-                while (tcpConnection.Connected)
-                {
-                    Console.WriteLine("I am now aboard " + boatName);
-                    try
-                    {
-                        //send name to boat
-                        tcpConnection.Client.Send(Encoding.ASCII.GetBytes(milionerName));
-
-                        //enable user to enter income or ask to leave the boat
-                        userEnterdInput(tcpConnection, boatName);
-
->>>>>>> 5bf09be1422d356e9605e7b52abcec84d8c965a4
                         //while connection is connected
                         while (tcpConnection.Connected)
                         {
@@ -94,14 +67,6 @@ namespace TheMillionersIssues
                     }
 
                 }
-<<<<<<< HEAD
-=======
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Could not open TCP connection");
-                lookingForSomeTrip();
->>>>>>> 5bf09be1422d356e9605e7b52abcec84d8c965a4
             }
             catch (Exception e)
             {
@@ -119,7 +84,6 @@ namespace TheMillionersIssues
             return sb.ToString();
 
         }
-<<<<<<< HEAD
 
         /// <summary>
         /// open new thread to check if the user entered input
@@ -132,30 +96,7 @@ namespace TheMillionersIssues
                 string input = Console.ReadLine();
 
                 //user entered ENTER
-                if (input.Length == 1 && input[0] == 13)
-=======
-
-        private String getStringFromBuffer(byte[] buffer)
-        {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < buffer.Length && buffer[i] != 0; i++)
-                sb.Append((char)buffer[i]);
-            return sb.ToString();
-
-        }
-        /// <summary>
-        /// open new thread to check if the user entered input
-        /// </summary>
-        /// <param name="tcpConnection"></param>
-        private void userEnterdInput(TcpClient tcpConnection, String boatName)
-        {
-            new System.Threading.Timer((e) =>
-            {
-                string input = Console.ReadLine();
-
-                //user entered ENTER
-                if (input.Length == 1 && input[0] == '\n')
->>>>>>> 5bf09be1422d356e9605e7b52abcec84d8c965a4
+                if (input.CompareTo("\r\n") == 0)
                     tcpConnection.Close();
                 else
                 {

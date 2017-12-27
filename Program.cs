@@ -13,9 +13,8 @@ namespace TheMillionersIssues
 
         public static void Main(string[] args)
         {
-<<<<<<< HEAD
             new Thread(funcA).Start();
-           // new Thread(funcB).Start();
+            //new Thread(funcB).Start();
 
         }
         public static void funcA()
@@ -25,8 +24,6 @@ namespace TheMillionersIssues
         }
         public static void funcB()
         {
-=======
->>>>>>> 5bf09be1422d356e9605e7b52abcec84d8c965a4
             new Milioner("JackSparrow").lookingForSomeTrip();
 
         }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TheMillionersIssues
 {
@@ -19,14 +20,12 @@ namespace TheMillionersIssues
         private String boatName32;
         private String boatName;
         private int port;
-        private Boolean anchor;
 
 
      
         public Boat(String name)
         {
             this.millionersDictionary = new Dictionary<Socket, Tuple<String, int>>();
-            this.anchor = false;
             this.boatName = name;
             this.port = findFreeTcpPort();
             byte[] a = Encoding.ASCII.GetBytes(GetLocalIPAddress());
@@ -50,8 +49,19 @@ namespace TheMillionersIssues
 
         }
 
+        private void anchor()
+        {
+            string exit = Console.ReadLine();
+            foreach (Socket client in millionersDictionary.Keys)
+                client.Close();
+            millionersDictionary.Clear();
+            anchor();
+        }
+
         public void raiseTheSail()
         {
+            new Thread(anchor).Start();
+
             new System.Threading.Timer((e) =>
             {
                 broadcast();
@@ -76,7 +86,7 @@ namespace TheMillionersIssues
             }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
             */
 
-            while (!anchor)
+            while (true)
             {
                 
                 TcpClient client = server.AcceptTcpClient();
@@ -105,7 +115,7 @@ namespace TheMillionersIssues
                     string newMsg = getStringFromBuffer(buffer);
                     string richestMill = null;
                     int tryParse;
-                    if (newMsg.Equals("\n"))
+                    if (newMsg.Equals("\r\n"))
                     {
                         onBoard = false;
                         removeClient(client.Client);
@@ -120,7 +130,7 @@ namespace TheMillionersIssues
                         Console.WriteLine(newMsg);
                     }
                 }
-            }catch(SocketException s)
+            }catch(SocketException)
             {
                 removeClient(client.Client);
             }

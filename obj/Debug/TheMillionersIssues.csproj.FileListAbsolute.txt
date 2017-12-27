@@ -1,21 +1,6 @@
-C:\Users\USER\Documents\GitHub\TheMillionersIssues\bin\Debug\TheMillionersIssues.exe.config
-C:\Users\USER\Documents\GitHub\TheMillionersIssues\bin\Debug\TheMillionersIssues.exe
-C:\Users\USER\Documents\GitHub\TheMillionersIssues\bin\Debug\TheMillionersIssues.pdb
-C:\Users\USER\Documents\GitHub\TheMillionersIssues\obj\Debug\TheMillionersIssues.exe
-C:\Users\USER\Documents\GitHub\TheMillionersIssues\obj\Debug\TheMillionersIssues.pdb
-C:\Users\USER\Documents\GitHub\TheMillionersIssues\obj\Debug\TheMillionersIssues.csprojResolveAssemblyReference.cache
-<<<<<<< HEAD
 d:\documents\users\talbense\Documents\GitHub\TheMillionersIssues\bin\Debug\TheMillionersIssues.exe.config
 d:\documents\users\talbense\Documents\GitHub\TheMillionersIssues\bin\Debug\TheMillionersIssues.exe
 d:\documents\users\talbense\Documents\GitHub\TheMillionersIssues\bin\Debug\TheMillionersIssues.pdb
-d:\documents\users\talbense\Documents\GitHub\TheMillionersIssues\obj\Debug\TheMillionersIssues.csprojResolveAssemblyReference.cache
 d:\documents\users\talbense\Documents\GitHub\TheMillionersIssues\obj\Debug\TheMillionersIssues.exe
 d:\documents\users\talbense\Documents\GitHub\TheMillionersIssues\obj\Debug\TheMillionersIssues.pdb
-=======
-d:\documents\users\amitmag\Documents\GitHub\TheMillionersIssues\bin\Debug\TheMillionersIssues.exe.config
-d:\documents\users\amitmag\Documents\GitHub\TheMillionersIssues\bin\Debug\TheMillionersIssues.exe
-d:\documents\users\amitmag\Documents\GitHub\TheMillionersIssues\bin\Debug\TheMillionersIssues.pdb
-d:\documents\users\amitmag\Documents\GitHub\TheMillionersIssues\obj\Debug\TheMillionersIssues.csprojResolveAssemblyReference.cache
-d:\documents\users\amitmag\Documents\GitHub\TheMillionersIssues\obj\Debug\TheMillionersIssues.exe
-d:\documents\users\amitmag\Documents\GitHub\TheMillionersIssues\obj\Debug\TheMillionersIssues.pdb
->>>>>>> 5bf09be1422d356e9605e7b52abcec84d8c965a4
+d:\documents\users\talbense\Documents\GitHub\TheMillionersIssues\obj\Debug\TheMillionersIssues.csprojResolveAssemblyReference.cache
