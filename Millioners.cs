@@ -8,7 +8,6 @@ namespace TheMillionersIssues
     class Milioner
     {
         private string milionerName;
-        private UdpClient sailorPort;
 
         public Milioner(String name)
         {
@@ -22,18 +21,22 @@ namespace TheMillionersIssues
         /// </summary>
         public void lookingForSomeTrip()
         {
+           
+            Console.WriteLine("Looking for a new boat...");
+            // while (sailorPort == null)
+            //  {
+            IPEndPoint ipEndPoint =  new IPEndPoint(IPAddress.Any, 1515);
+         //   }
             try
             {
-                Console.WriteLine("Looking for a new boat...");
-                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, 1515);
-                sailorPort = new UdpClient(ipEndPoint);
+                UdpClient  sailorPort = new UdpClient(ipEndPoint);
                 Byte[] receiveBytes = sailorPort.Receive(ref ipEndPoint);
                 Byte[] portBytes = { receiveBytes[receiveBytes.Length - 1], receiveBytes[receiveBytes.Length - 2] };
                 string applicationMsg = Encoding.ASCII.GetString(receiveBytes);
                 int returnPort = BitConverter.ToInt16(portBytes, 0);
                 String boatName = applicationMsg.Substring("IntroToNets".Length, 32/*bytes*/);
                 Console.WriteLine("Requesting to board The " + boatName);
-
+                sailorPort.Close();
                 TcpClient tcpConnection = new TcpClient();
                 tcpConnection.Connect(new IPEndPoint(ipEndPoint.Address, returnPort));
 
@@ -72,7 +75,7 @@ namespace TheMillionersIssues
             }
 
         }
-
+        ///
         private String getStringFromBuffer(byte[] buffer)
         {
             StringBuilder sb = new StringBuilder();
@@ -81,6 +84,7 @@ namespace TheMillionersIssues
             return sb.ToString();
 
         }
+     
         /// <summary>
         /// open new thread to check if the user entered input
         /// </summary>
@@ -92,7 +96,7 @@ namespace TheMillionersIssues
                 string input = Console.ReadLine();
 
                 //user entered ENTER
-                if (input.Length == 1 && input[0] == '\n')
+                if (input.CompareTo("\r\n") == 0)
                     tcpConnection.Close();
                 else
                 {
