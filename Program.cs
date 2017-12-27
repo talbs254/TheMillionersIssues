@@ -13,7 +13,7 @@ namespace TheMillionersIssues
         public static void Main(string[] args)
         {
             new Thread(funcA).Start();
-            new Thread(funcB).Start();
+           // new Thread(funcB).Start();
 
         }
         public static void funcA()
