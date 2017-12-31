@@ -115,7 +115,7 @@ namespace TheMillionersIssues
                     string newMsg = getStringFromBuffer(buffer);
                     string richestMill = null;
                     int tryParse;
-                    if (newMsg.Equals("\r\n"))
+                    if (newMsg.Equals(""))
                     {
                         onBoard = false;
                         removeClient(client.Client);

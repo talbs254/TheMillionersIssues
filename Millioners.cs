@@ -23,10 +23,7 @@ namespace TheMillionersIssues
         {
 
             Console.WriteLine("Looking for a new boat...");
-            // while (sailorPort == null)
-            //  {
             IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, 1515);
-            //   }
             try
             {
                 UdpClient sailorPort = new UdpClient(ipEndPoint);
@@ -96,7 +93,7 @@ namespace TheMillionersIssues
                 string input = Console.ReadLine();
 
                 //user entered ENTER
-                if (input.CompareTo("\r\n") == 0)
+                if (input.CompareTo("") == 0)
                     tcpConnection.Close();
                 else
                 {
